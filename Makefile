@@ -2,7 +2,7 @@ CC = gcc
 
 NAME = philo
 
-SRC = philo.c
+SRC = philo.c input_check.c atoi.c ft_ll_atoi.c
 
 ALLSRC = $(SRC)
 
