@@ -6,7 +6,7 @@
 /*   By: jfritz <jfritz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/08 13:22:17 by jfritz            #+#    #+#             */
-/*   Updated: 2021/12/08 16:39:16 by jfritz           ###   ########.fr       */
+/*   Updated: 2021/12/08 16:45:40 by jfritz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,9 @@ static int	validate_number(char *n)
 	return (0);
 }
 
+/*
+	Checks if variable is a number
+*/
 static int	ft_is_number(char *c)
 {
 	int	i;
@@ -47,6 +50,10 @@ static int	ft_is_number(char *c)
 	return (1);
 }
 
+/*
+	Checks a single arg to only be numbers
+	and to not overflow
+*/
 static int check_single_arg(char *arg)
 {
 	if (validate_number(arg) && ft_is_number(arg))
