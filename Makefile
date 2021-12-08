@@ -2,9 +2,11 @@ CC = gcc
 
 NAME = philo
 
-SRC = philo.c input_check.c atoi.c ft_ll_atoi.c
+SRC = philo.c input_check.c
 
-ALLSRC = $(SRC)
+ATOIS = ./atois/atoi.c ./atois/ft_ll_atoi.c
+
+ALLSRC = $(SRC) $(ATOIS)
 
 FLAGS = -Wall -Wextra -Werror
 

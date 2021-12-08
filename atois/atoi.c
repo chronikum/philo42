@@ -1,19 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ll_atoi.c                                       :+:      :+:    :+:   */
+/*   atoi.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jfritz <jfritz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/08 12:48:24 by jfritz            #+#    #+#             */
-/*   Updated: 2021/12/08 13:23:10 by jfritz           ###   ########.fr       */
+/*   Created: 2021/12/08 12:42:38 by jfritz            #+#    #+#             */
+/*   Updated: 2021/12/08 16:50:42 by jfritz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./includes/ft_philo.h"
+#include "../includes/ft_philo.h"
 
-static long long	ft_skip_plus_minus(const char *str,
-	long long p, long long *m)
+int	ft_isdigit(int c)
+{
+	if (c >= 48 && c <= 57)
+		return (1);
+	return (0);
+}
+
+int	whitespace(char c)
+{
+	return ((c == '\t') || (c == '\n')
+		|| (c == '\v') || (c == '\f') || (c == '\r') || (c == ' '));
+}
+
+static int	ft_skip_plus_minus(const char *str, int p, int *m)
 {
 	int	a;
 
@@ -33,11 +45,14 @@ static long long	ft_skip_plus_minus(const char *str,
 	return (p + a);
 }
 
-long long	ft_ll_atoi(const char *str)
+/*
+	Ascii to integer
+*/
+int	ft_atoi(const char *str)
 {
-	long long		i;
-	long long		r;
-	long long		m;
+	int		i;
+	int		r;
+	int		m;
 
 	i = 0;
 	r = 0;
@@ -56,3 +71,4 @@ long long	ft_ll_atoi(const char *str)
 	}
 	return (r * m);
 }
+

@@ -4,6 +4,14 @@
 # include <unistd.h>
 # include <stdio.h>
 
+typedef struct s_params {
+	int	number_philo;
+	int	time_to_die;
+	int	time_to_eat;
+	int	time_to_sleep;
+	int	number_must_eat;
+}	t_params;
+
 int			check_input(char **argv);
 int			ft_isdigit(int c);
 int			ft_atoi(const char *str);
