@@ -1,7 +1,6 @@
 ## Philosophers
 
 > To be, or not to be, that is the question
-\
 
 A multithread 42 project.
 
