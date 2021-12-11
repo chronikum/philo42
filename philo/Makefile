@@ -2,13 +2,13 @@ CC = gcc
 
 NAME = philo
 
-SRC = philo.c input_check.c
+SRC = philo.c input_check.c cycle.c printer.c
 
-UTILS = ./utils/get_time.c
+UTILS = ./utils/get_time.c ./utils/basic_utils.c
 
 ATOIS = ./atois/atoi.c ./atois/ft_ll_atoi.c start_philo.c
 
-ALLSRC = $(SRC) $(ATOIS)
+ALLSRC = $(SRC) $(ATOIS) $(UTILS)
 
 FLAGS = -Wall -Wextra -Werror
 

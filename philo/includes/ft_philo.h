@@ -5,8 +5,14 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <pthread.h>
+# include <sys/time.h>
 
 // #define malloc(__size) NULL;
+
+# define EATING 1
+# define SLEEPING 2
+# define THINKING 3
+# define DEAD 4
 
 typedef struct s_params {
 	int	number_philo;
@@ -15,16 +21,20 @@ typedef struct s_params {
 	int	time_to_sleep;
 	int	number_must_eat;
 	pthread_mutex_t	*forks;
+	int				alive;
+	long			start_time;
 }	t_params;
 
 typedef struct s_philosoph {
-	int identifier;
+	int					identifier;
+	char				*str_id;
 	pthread_mutex_t		*left_fork;
 	pthread_mutex_t		*right_fork;
 	pthread_t			thread;
 	int					is_dead;
 	unsigned int		last_meal;
 	t_params			*params;
+	pthread_mutex_t		waiter;
 }	t_philosph;
 
 int			check_input(char **argv);
@@ -34,5 +44,11 @@ int			whitespace(char c);
 long long	ft_ll_atoi(const char *str);
 void		start_philo(t_params *param, t_philosph	*phs);
 long		get_current_time(void);
+
+void		eating_philo(t_philosph *ph);
+void		sleeping_philo(t_philosph *ph);
+
+int			ft_strlen(char *c);
+void		printer(t_philosph *philo, int activity);
 
 #endif
