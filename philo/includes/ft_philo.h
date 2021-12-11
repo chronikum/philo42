@@ -24,6 +24,8 @@ typedef struct s_params {
 	pthread_mutex_t	*forks;
 	int				alive;
 	long			start_time;
+	pthread_mutex_t	waiter;
+	pthread_mutex_t	wait_printing;
 }	t_params;
 
 typedef struct s_philosoph {
@@ -36,7 +38,6 @@ typedef struct s_philosoph {
 	long				next_death;
 	unsigned int		last_meal;
 	t_params			*params;
-	pthread_mutex_t		waiter;
 }	t_philosph;
 
 int			check_input(char **argv);

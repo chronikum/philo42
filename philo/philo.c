@@ -6,7 +6,7 @@
 /*   By: jfritz <jfritz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/08 12:30:33 by jfritz            #+#    #+#             */
-/*   Updated: 2021/12/11 16:39:42 by jfritz           ###   ########.fr       */
+/*   Updated: 2021/12/11 18:53:32 by jfritz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ int	fill_params(char **argv, t_params *param)
 	param->time_to_eat = ft_atoi(argv[3]);
 	param->time_to_sleep = ft_atoi(argv[4]);
 	param->forks = malloc(sizeof(pthread_mutex_t) * ft_atoi(argv[1]));
+	pthread_mutex_init(&param->wait_printing, NULL);
 	if (!param->forks)
 		return (0);
 	if (argv[5])

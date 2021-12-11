@@ -1,5 +1,6 @@
 {
 	"files.associations": {
-		"ft_philo.h": "c"
+		"ft_philo.h": "c",
+		"algorithm": "c"
 	}
 }
