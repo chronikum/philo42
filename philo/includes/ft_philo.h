@@ -13,6 +13,7 @@
 # define SLEEPING 2
 # define THINKING 3
 # define DEAD 4
+# define FORK 5
 
 typedef struct s_params {
 	int	number_philo;
@@ -32,6 +33,7 @@ typedef struct s_philosoph {
 	pthread_mutex_t		*right_fork;
 	pthread_t			thread;
 	int					is_dead;
+	long				next_death;
 	unsigned int		last_meal;
 	t_params			*params;
 	pthread_mutex_t		waiter;
@@ -50,5 +52,7 @@ void		sleeping_philo(t_philosph *ph);
 
 int			ft_strlen(char *c);
 void		printer(t_philosph *philo, int activity);
+void		*life_cycle(void *pointer);
+void		watcher(t_philosph *philos);
 
 #endif

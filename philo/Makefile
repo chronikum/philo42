@@ -10,7 +10,7 @@ ATOIS = ./atois/atoi.c ./atois/ft_ll_atoi.c start_philo.c
 
 ALLSRC = $(SRC) $(ATOIS) $(UTILS)
 
-FLAGS = -Wall -Wextra -Werror
+FLAGS = -Wall -Wextra -Werror -g
 
 all: $(NAME)
 

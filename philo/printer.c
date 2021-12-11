@@ -6,7 +6,7 @@
 /*   By: jfritz <jfritz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/11 14:46:42 by jfritz            #+#    #+#             */
-/*   Updated: 2021/12/11 16:02:41 by jfritz           ###   ########.fr       */
+/*   Updated: 2021/12/11 16:57:33 by jfritz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,13 @@ void	printer(t_philosph *philo, int activity)
 	
 	time = get_current_time() - philo->params->start_time;
 	if (activity == EATING)
-		printf("%lu Phile %d is eating\n", time, philo->identifier);
+		printf("%lu | Philo %d is eating\n", time, philo->identifier);
 	if (activity == SLEEPING)
-		printf("%lu Phile %d is sleeping\n", time, philo->identifier);
+		printf("%lu | Philo %d is sleeping\n", time, philo->identifier);
 	if (activity == THINKING)
-		printf("%lu Phile %d is thinking\n", time, philo->identifier);
+		printf("%lu | Philo %d is thinking\n", time, philo->identifier);
+	if (activity == FORK)
+		printf("%lu | Philo %d takes a fork\n", time, philo->identifier);
+	if (activity == DEAD)
+		printf("%lu | Philo %d died\n", time, philo->identifier);
 }

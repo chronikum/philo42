@@ -6,7 +6,7 @@
 /*   By: jfritz <jfritz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/08 12:30:33 by jfritz            #+#    #+#             */
-/*   Updated: 2021/12/09 17:28:51 by jfritz           ###   ########.fr       */
+/*   Updated: 2021/12/11 16:39:42 by jfritz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,6 @@ t_params	*create_params(char **argv)
 {
 	t_params	*params;
 
-	if (!check_input(argv))
-		return (NULL);
 	params = malloc(sizeof(t_params));
 	if (!params)
 		return (NULL);
@@ -62,6 +60,8 @@ int	main(int argc, char **argv)
 		printf("Usage: number time_die time_eat time_sleep [must_eat]");
 		return (1);
 	}
+	if (!check_input(argv))
+		return (1);
 	params = create_params(argv);
 	phs = malloc(sizeof(t_philosph) * params->number_philo + 1);
 	if (!params)

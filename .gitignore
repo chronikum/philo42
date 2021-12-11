@@ -2,3 +2,6 @@
 .DS_Store
 philo/philo
 .gitignore
+philo/philo.dSYM/Contents/Info.plist
+.gitignore
+philo/philo.dSYM/Contents/Resources/DWARF/philo

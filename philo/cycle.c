@@ -6,11 +6,35 @@
 /*   By: jfritz <jfritz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/11 14:41:09 by jfritz            #+#    #+#             */
-/*   Updated: 2021/12/11 16:06:09 by jfritz           ###   ########.fr       */
+/*   Updated: 2021/12/11 17:01:48 by jfritz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./includes/ft_philo.h"
+
+/*
+	Looks if philosophers are not eating for a certain time
+	If yes, declare them as dead.
+*/
+void	watcher(t_philosph *philos)
+{
+	int i;
+	
+	i = 0;
+	while (philos->params->alive)
+	{
+		i = 0;
+		while (i < philos->params->number_philo)
+		{
+			if (get_current_time() >= philos[i].next_death)
+			{
+				printer(&philos[i], DEAD);
+				philos->params->alive = 0;
+				i = 100;
+			}
+		}
+	}
+}
 
 void	ft_wait(long time)
 {
@@ -28,8 +52,11 @@ void	ft_wait(long time)
 void	eating_philo(t_philosph *ph)
 {
 	pthread_mutex_lock(ph->left_fork);
+	printer(ph, FORK);
 	pthread_mutex_lock(ph->right_fork);
+	printer(ph, FORK);
 	printer(ph, EATING);
+	ph->next_death = get_current_time() + (ph->params->time_to_die + ph->params->time_to_eat);
 	ft_wait(ph->params->time_to_eat);
 	pthread_mutex_unlock(ph->left_fork);
 	pthread_mutex_unlock(ph->right_fork);
@@ -41,6 +68,24 @@ void	eating_philo(t_philosph *ph)
 */
 void	sleeping_philo(t_philosph *ph)
 {
-	ft_wait(ph->params->time_to_sleep);
 	printer(ph, SLEEPING);
+	ft_wait(ph->params->time_to_sleep);
+}
+
+/*
+	The life cycle of a philosoph
+*/
+void	*life_cycle(void *pointer)
+{
+	t_philosph 	*philo;
+	
+	philo = (t_philosph *) pointer;
+	while (philo->params->alive)
+	{
+		pthread_mutex_lock(&philo->waiter);
+		eating_philo(philo);
+		sleeping_philo(philo);
+		pthread_mutex_unlock(&philo->waiter);
+	}
+	return (NULL);
 }

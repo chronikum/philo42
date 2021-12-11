@@ -6,7 +6,7 @@
 /*   By: jfritz <jfritz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/08 13:22:17 by jfritz            #+#    #+#             */
-/*   Updated: 2021/12/08 16:45:40 by jfritz           ###   ########.fr       */
+/*   Updated: 2021/12/11 16:37:28 by jfritz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static int	ft_is_number(char *c)
 	{
 		while (c[i] == ' ' && c[i])
 			i++;
-		if ((c[i] == '-' || c[i] == '+') && c[i])
+		if (c[i] == '+' && c[i])
 			i++;
 		if (ft_isdigit(c[i]) && c[i])
 			i++;

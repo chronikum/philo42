@@ -6,27 +6,11 @@
 /*   By: jfritz <jfritz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/09 14:56:28 by jfritz            #+#    #+#             */
-/*   Updated: 2021/12/11 16:05:43 by jfritz           ###   ########.fr       */
+/*   Updated: 2021/12/11 17:02:43 by jfritz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./includes/ft_philo.h"
-
-/*
-	The life cycle of a philosoph
-*/
-void	*life_cycle(void *pointer)
-{
-	t_philosph 	*philo;
-	
-	philo = (t_philosph *) pointer;
-	while (philo->params->alive)
-	{
-		eating_philo(philo);
-		sleeping_philo(philo);
-	}
-	return (NULL);
-}
 
 /*
 	Inits the mutex and creates all the forks
@@ -55,20 +39,20 @@ void	start_philo(t_params *param, t_philosph	*phs)
 	
 	i = 0;
 	build_forks(param);
-	param->alive = 1;
 	param->start_time = get_current_time();
+	param->alive = 1;
 	while (i < param->number_philo)
 	{
-		phs[i].params = param;
-		phs[i].identifier = i;
-		phs[i].left_fork = &param->forks[i];
-		phs[i].right_fork = &param->forks[(i + 1) % param->number_philo];
+		(&phs[i])->params = param;
+		(&phs[i])->identifier = (i + 1);
+		(&phs[i])->left_fork = &param->forks[i];
+		(&phs[i])->right_fork = &param->forks[(i + 1) % param->number_philo];
+		(&phs[i])->next_death = get_current_time() + param->time_to_die;
 		pthread_create(&phs[i].thread, NULL, &life_cycle, &phs[i]);
 		usleep(100);
 		i++;
 	}
-	while (param->alive)
-	{}
+	watcher(phs);
 }
 
 // printf("Philo %d has left fork %d and right fork %d\n", i, i, ((i + 1) % param->number_philo));
