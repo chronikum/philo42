@@ -6,11 +6,38 @@
 /*   By: jfritz <jfritz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/08 12:30:33 by jfritz            #+#    #+#             */
-/*   Updated: 2021/12/11 18:53:32 by jfritz           ###   ########.fr       */
+/*   Updated: 2021/12/11 19:17:37 by jfritz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./includes/ft_philo.h"
+
+/*
+	Join the thread back together
+*/
+void	join_together(t_philosph *philosophs)
+{
+	int			i;
+	int			philo_number;
+	t_params	*params;
+
+	i = 0;
+	params = philosophs->params;
+	philo_number = philosophs->params->number_philo;
+	while (i < philo_number)
+	{
+		pthread_join(philosophs[i].thread, NULL);
+		i++;
+	}
+	i = 0;
+	while (i < philo_number)
+	{
+		pthread_mutex_destroy(&params->forks[i]);
+		i++;
+	}
+	pthread_mutex_destroy(&params->wait_printing);
+	pthread_mutex_destroy(&params->waiter);
+}
 
 /*
 	Fills the parameter in the allocated struct
@@ -68,6 +95,7 @@ int	main(int argc, char **argv)
 	if (!params)
 		return (1);
 	start_philo(params, phs);
+	
 	free(params);
 	free(phs);
 	return (0);
