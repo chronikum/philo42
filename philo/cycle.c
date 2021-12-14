@@ -6,7 +6,7 @@
 /*   By: jfritz <jfritz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/11 14:41:09 by jfritz            #+#    #+#             */
-/*   Updated: 2021/12/11 18:00:50 by jfritz           ###   ########.fr       */
+/*   Updated: 2021/12/14 13:38:53 by jfritz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	watcher(t_philosph *philos)
 			{
 				printer(&philos[i], DEAD);
 				philos->params->alive = 0;
-				i = 100;
+				i = 400;
 			}
 		}
 	}
