@@ -6,7 +6,7 @@
 /*   By: jfritz <jfritz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/09 14:56:28 by jfritz            #+#    #+#             */
-/*   Updated: 2021/12/14 13:37:03 by jfritz           ###   ########.fr       */
+/*   Updated: 2021/12/14 13:41:56 by jfritz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	start_philo(t_params *param, t_philosph	*phs)
 		(&phs[i])->identifier = (i + 1);
 		(&phs[i])->left_fork = &param->forks[i];
 		(&phs[i])->right_fork = &param->forks[(i + 1) % param->number_philo];
-		(&phs[i])->next_death = get_current_time() + param->time_to_die;
+		(&phs[i])->next_death = param->start_time + param->time_to_die;
 		pthread_create(&phs[i].thread, NULL, &life_cycle, &phs[i]);
 		usleep(100);
 		i++;

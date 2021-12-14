@@ -6,7 +6,7 @@
 /*   By: jfritz <jfritz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/08 12:30:33 by jfritz            #+#    #+#             */
-/*   Updated: 2021/12/14 13:33:02 by jfritz           ###   ########.fr       */
+/*   Updated: 2021/12/14 13:43:00 by jfritz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,7 @@ int	main(int argc, char **argv)
 	if (!params)
 		return (1);
 	start_philo(params, phs);
+	join_together(phs);
 	free(params);
 	free(phs);
 	return (0);
