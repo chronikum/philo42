@@ -6,7 +6,7 @@
 /*   By: jfritz <jfritz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/11 14:41:09 by jfritz            #+#    #+#             */
-/*   Updated: 2021/12/14 13:38:53 by jfritz           ###   ########.fr       */
+/*   Updated: 2021/12/15 15:50:24 by jfritz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,8 @@ void	eating_philo(t_philosph *ph)
 	printer(ph, FORK);
 	ph->next_death = get_current_time() + get_current_time();
 	printer(ph, EATING);
-	ft_wait(ph->params->time_to_eat);
 	ph->next_death = get_current_time() + (ph->params->time_to_die);
+	ft_wait(ph->params->time_to_eat);
 	pthread_mutex_unlock(ph->left_fork);
 	pthread_mutex_unlock(ph->right_fork);
 }
