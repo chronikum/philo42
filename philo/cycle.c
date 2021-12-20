@@ -6,7 +6,7 @@
 /*   By: jfritz <jfritz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/11 14:41:09 by jfritz            #+#    #+#             */
-/*   Updated: 2021/12/17 11:09:26 by jfritz           ###   ########.fr       */
+/*   Updated: 2021/12/20 12:50:02 by jfritz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	ft_wait(long time)
 
 	starting_time = get_current_time();
 	while (starting_time + time > get_current_time())
-		usleep(100);
+		usleep(5);
 	return ;
 }
 
