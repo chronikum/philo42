@@ -57,4 +57,6 @@ void		printer(t_philosph *philo, int activity);
 void		*life_cycle(void *pointer);
 void		watcher(t_philosph *philos);
 
+void		ft_unlock_all(t_philosph *phs);
+
 #endif
