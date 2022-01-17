@@ -6,7 +6,7 @@
 /*   By: jfritz <jfritz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/11 14:46:42 by jfritz            #+#    #+#             */
-/*   Updated: 2022/01/17 12:27:26 by jfritz           ###   ########.fr       */
+/*   Updated: 2022/01/17 17:19:21 by jfritz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,24 +23,45 @@ void	put_number(unsigned int n, char *seq, unsigned int base)
 	}
 }
 
+void	print_action(long time, int phil_id, int activity, t_philosph *philo)
+{
+	char buff[128];
+	char *ptr;
+	int i;
+	
+	i = 0;
+	ptr = buff;
+	while (i < 128)
+	{
+		buff[i] = '\0';
+		i++;
+	}
+	write(1, buff, 128);
+	putnbr_buff(time, &ptr);
+	putstr_buff(" ", &ptr);
+	putnbr_buff(phil_id, &ptr);
+	if (activity == EATING)
+		putstr_buff(" is eating\n", &ptr);
+	if (activity == FORK)
+		putstr_buff(" is taking a fork\n", &ptr);
+	else if (activity == SLEEPING)
+		putstr_buff(" is sleeping\n", &ptr);
+	else if (activity == THINKING)
+		putstr_buff(" is thinking\n", &ptr);
+	else if (activity == DEAD)
+		putstr_buff(" died\n", &ptr);
+	pthread_mutex_lock(&philo->params->wait_printing);
+	if (philo->params->alive)
+		write(1, buff, ft_strlen(buff));
+	pthread_mutex_unlock(&philo->params->wait_printing);
+}
+
 void	printer(t_philosph *philo, int activity)
 {
 	long time;
-	
-	pthread_mutex_lock(&philo->params->wait_printing);
 	if (philo->params->alive)
 	{
 		time = get_current_time() - philo->params->start_time;
-		if (activity == EATING && philo->params->alive)
-			printf("%lu | Philo %d is eating\n", time, philo->identifier);
-		if (activity == SLEEPING && philo->params->alive)
-			printf("%lu | Philo %d is sleeping\n", time, philo->identifier);
-		if (activity == THINKING && philo->params->alive)
-			printf("%lu | Philo %d is thinking\n", time, philo->identifier);
-		if (activity == FORK && philo->params->alive)
-			printf("%lu | Philo %d takes a fork\n", time, philo->identifier);
-		if (activity == DEAD)
-			printf("%lu | Philo %d died\n", time, philo->identifier);	
+		print_action(time, philo->identifier, activity, philo);
 	}
-	pthread_mutex_unlock(&philo->params->wait_printing);
 }

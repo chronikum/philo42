@@ -58,5 +58,9 @@ void		*life_cycle(void *pointer);
 void		watcher(t_philosph *philos);
 
 void		ft_unlock_all(t_philosph *phs);
+void		ft_buffnbr(int n, char *seq, int base, char **buff);
+void		ft_putstr_fd(char *s, int fd);
+void		putstr_buff(char *s, char **buff);
+void		putnbr_buff(int n, char **buff);
 
 #endif

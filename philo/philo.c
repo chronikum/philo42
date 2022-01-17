@@ -6,7 +6,7 @@
 /*   By: jfritz <jfritz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/08 12:30:33 by jfritz            #+#    #+#             */
-/*   Updated: 2022/01/17 12:30:12 by jfritz           ###   ########.fr       */
+/*   Updated: 2022/01/17 12:36:10 by jfritz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ void	join_together(t_philosph *philosophs)
 	i = 0;
 	params = philosophs->params;
 	philo_number = philosophs->params->number_philo;
-	write(1, "Joining together!\n", 17);
 	ft_unlock_all(philosophs);
 	while (i < philo_number)
 	{

@@ -6,7 +6,7 @@
 /*   By: jfritz <jfritz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/09 14:56:28 by jfritz            #+#    #+#             */
-/*   Updated: 2021/12/17 10:54:29 by jfritz           ###   ########.fr       */
+/*   Updated: 2022/01/17 12:57:39 by jfritz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ void	build_forks(t_params *param)
 	int i;
 	
 	i = 0;
+	pthread_mutex_init(&param->wait_printing, NULL);
+	pthread_mutex_init(&param->waiter, NULL);
 	while (i < param->number_philo)
 	{
 		pthread_mutex_init(&param->forks[i], NULL);
