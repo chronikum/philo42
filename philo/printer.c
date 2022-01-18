@@ -6,7 +6,7 @@
 /*   By: jfritz <jfritz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/11 14:46:42 by jfritz            #+#    #+#             */
-/*   Updated: 2022/01/17 17:19:21 by jfritz           ###   ########.fr       */
+/*   Updated: 2022/01/18 11:28:09 by jfritz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,21 +23,22 @@ void	put_number(unsigned int n, char *seq, unsigned int base)
 	}
 }
 
-void	print_action(long time, int phil_id, int activity, t_philosph *philo)
+void	print_action(int phil_id, int activity, t_philosph *philo)
 {
 	char buff[128];
 	char *ptr;
 	int i;
+	long time;
 	
 	i = 0;
 	ptr = buff;
+	pthread_mutex_lock(&philo->params->wait_printing);
 	while (i < 128)
 	{
 		buff[i] = '\0';
 		i++;
 	}
-	write(1, buff, 128);
-	putnbr_buff(time, &ptr);
+	// putnbr_buff(time, &ptr);
 	putstr_buff(" ", &ptr);
 	putnbr_buff(phil_id, &ptr);
 	if (activity == EATING)
@@ -50,18 +51,19 @@ void	print_action(long time, int phil_id, int activity, t_philosph *philo)
 		putstr_buff(" is thinking\n", &ptr);
 	else if (activity == DEAD)
 		putstr_buff(" died\n", &ptr);
-	pthread_mutex_lock(&philo->params->wait_printing);
 	if (philo->params->alive)
+	{
+		time = get_current_time() - philo->params->start_time;
+		put_nbr(time);
 		write(1, buff, ft_strlen(buff));
+	}
 	pthread_mutex_unlock(&philo->params->wait_printing);
 }
 
 void	printer(t_philosph *philo, int activity)
 {
-	long time;
 	if (philo->params->alive)
 	{
-		time = get_current_time() - philo->params->start_time;
-		print_action(time, philo->identifier, activity, philo);
+		print_action(philo->identifier, activity, philo);
 	}
 }

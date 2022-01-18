@@ -62,5 +62,6 @@ void		ft_buffnbr(int n, char *seq, int base, char **buff);
 void		ft_putstr_fd(char *s, int fd);
 void		putstr_buff(char *s, char **buff);
 void		putnbr_buff(int n, char **buff);
+void		put_nbr(int n);
 
 #endif

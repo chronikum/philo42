@@ -6,7 +6,7 @@
 /*   By: jfritz <jfritz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/11 14:49:16 by jfritz            #+#    #+#             */
-/*   Updated: 2022/01/17 17:19:09 by jfritz           ###   ########.fr       */
+/*   Updated: 2022/01/18 11:27:48 by jfritz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,18 @@ void	putstr_buff(char *s, char **buff)
 		}
 		*(*buff) = '\0';
 	}
+}
+
+void	put_nbr(int n)
+{
+	int		base;
+	char	*seq;
+	
+	seq = "0123456789";
+	base = 10;
+	if (n >= base)
+		put_nbr(n / base);
+	write(1, &(seq[n % base]), 1);
 }
 
 void	putnbr_buff(int n, char **buff)
