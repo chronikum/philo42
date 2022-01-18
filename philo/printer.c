@@ -6,11 +6,23 @@
 /*   By: jfritz <jfritz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/11 14:46:42 by jfritz            #+#    #+#             */
-/*   Updated: 2022/01/18 11:42:54 by jfritz           ###   ########.fr       */
+/*   Updated: 2022/01/18 12:24:32 by jfritz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./includes/ft_philo.h"
+
+void	set_buff_zero(char *buff)
+{
+	long	i;
+
+	i = 0;
+	while (i < 128)
+	{
+		buff[i] = '\0';
+		i++;
+	}
+}
 
 void	put_number(unsigned int n, char *seq, unsigned int base)
 {
@@ -25,20 +37,12 @@ void	put_number(unsigned int n, char *seq, unsigned int base)
 
 void	print_action(int phil_id, int activity, t_philosph *philo)
 {
-	char buff[128];
-	char *ptr;
-	int i;
-	long time;
-	
-	i = 0;
+	char	buff[128];
+	char	*ptr;
+	long	time;
+
 	ptr = buff;
-	pthread_mutex_lock(&philo->params->wait_printing);
-	while (i < 128)
-	{
-		buff[i] = '\0';
-		i++;
-	}
-	// putnbr_buff(time, &ptr);
+	set_buff_zero(ptr);
 	putstr_buff(" ", &ptr);
 	putnbr_buff(phil_id, &ptr);
 	if (activity == EATING)
@@ -57,13 +61,14 @@ void	print_action(int phil_id, int activity, t_philosph *philo)
 		put_nbr(time);
 		write(1, buff, ft_strlen(buff));
 	}
-	pthread_mutex_unlock(&philo->params->wait_printing);
 }
 
 void	printer(t_philosph *philo, int activity)
 {
 	if (philo->params->alive)
 	{
+		pthread_mutex_lock(&philo->params->wait_printing);
 		print_action(philo->identifier, activity, philo);
+		pthread_mutex_unlock(&philo->params->wait_printing);
 	}
 }

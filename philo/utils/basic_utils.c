@@ -6,7 +6,7 @@
 /*   By: jfritz <jfritz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/11 14:49:16 by jfritz            #+#    #+#             */
-/*   Updated: 2022/01/18 11:52:17 by jfritz           ###   ########.fr       */
+/*   Updated: 2022/01/18 12:34:06 by jfritz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,26 +15,11 @@
 int	ft_strlen(char *c)
 {
 	int	i;
-	
+
 	i = 0;
 	while (c[i])
 		i++;
 	return (i);
-}
-
-void	ft_unlock_all(t_philosph *phs)
-{
-	int i;
-	
-	i = 0;
-	while (i < phs->params->number_philo)
-	{
-		pthread_mutex_unlock((&phs[i])->left_fork);
-		pthread_mutex_unlock((&phs[i])->right_fork);
-		i++;
-	}
-	pthread_mutex_unlock(&phs->params->wait_printing);
-	print_how_many_eaten(phs);
 }
 
 void	ft_putstr_fd(char *s, int fd)
@@ -71,7 +56,7 @@ void	put_nbr(int n)
 {
 	int		base;
 	char	*seq;
-	
+
 	seq = "0123456789";
 	base = 10;
 	if (n >= base)
@@ -83,22 +68,10 @@ void	putnbr_buff(int n, char **buff)
 {
 	int		base;
 	char	*seq;
-	
+
 	seq = "0123456789";
 	base = 10;
 	if (n >= base)
 		putnbr_buff(n / base, buff);
 	*(*buff)++ = (seq[n % base]);
-}
-
-void	print_how_many_eaten(t_philosph *phs)
-{
-	int i;
-	
-	i = 0;
-	while (i < phs[0].params->number_philo)
-	{
-		printf("Times eaten: %d, philo: %d\n", phs[i].times_eaten, phs[i].identifier);
-		i++;
-	}
 }

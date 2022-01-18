@@ -6,7 +6,7 @@
 /*   By: jfritz <jfritz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/08 13:22:17 by jfritz            #+#    #+#             */
-/*   Updated: 2021/12/11 16:37:28 by jfritz           ###   ########.fr       */
+/*   Updated: 2022/01/18 12:18:04 by jfritz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static int	ft_is_number(char *c)
 	Checks a single arg to only be numbers
 	and to not overflow
 */
-static int check_single_arg(char *arg)
+static int	check_single_arg(char *arg)
 {
 	if (validate_number(arg) && ft_is_number(arg))
 		return (1);
@@ -67,7 +67,7 @@ static int check_single_arg(char *arg)
 int	check_input(char **argv)
 {
 	int	i;
-	int valid;
+	int	valid;
 
 	i = 1;
 	valid = 1;
@@ -77,6 +77,5 @@ int	check_input(char **argv)
 			valid = 0;
 		i++;
 	}
-
 	return (valid);
 }

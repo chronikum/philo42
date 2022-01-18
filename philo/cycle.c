@@ -6,50 +6,11 @@
 /*   By: jfritz <jfritz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/11 14:41:09 by jfritz            #+#    #+#             */
-/*   Updated: 2022/01/18 12:07:45 by jfritz           ###   ########.fr       */
+/*   Updated: 2022/01/18 12:30:56 by jfritz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./includes/ft_philo.h"
-
-/*
-	Looks if philosophers are not eating for a certain time
-	If yes, declare them as dead.
-*/
-void	watcher(t_philosph *philos)
-{
-	int i;
-	int all_done;
-	
-	i = 0;
-	all_done = 0;
-	while (philos->params->alive)
-	{
-		i = 0;
-		all_done = 0;
-		while (i < philos->params->number_philo)
-		{
-			pthread_mutex_lock(&philos->params->reading_alive);
-			if (get_current_time() >= philos[i].next_death)
-			{
-				printer(&philos[i], DEAD);
-				philos->params->alive = 0;
-				i = 400;
-			} 
-			else if (philos[i].times_eaten >= philos->params->number_must_eat)
-			{
-				all_done++;
-			}
-			i++;
-			pthread_mutex_unlock(&philos->params->reading_alive);
-		}
-		if (all_done == philos->params->number_philo)
-		{
-			philos->params->alive = 0;
-			i = 400;
-		}
-	}
-}
 
 void	ft_wait(long time)
 {
@@ -78,7 +39,7 @@ void	eating_philo(t_philosph *ph)
 	if (ph->params->alive)
 	{
 		pthread_mutex_unlock(ph->left_fork);
-		pthread_mutex_unlock(ph->right_fork);	
+		pthread_mutex_unlock(ph->right_fork);
 	}
 }
 
@@ -96,8 +57,8 @@ void	sleeping_philo(t_philosph *ph)
 */
 void	*life_cycle(void *pointer)
 {
-	t_philosph 	*philo;
-	
+	t_philosph	*philo;
+
 	philo = (t_philosph *) pointer;
 	while (philo->params->alive)
 	{

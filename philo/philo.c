@@ -6,7 +6,7 @@
 /*   By: jfritz <jfritz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/08 12:30:33 by jfritz            #+#    #+#             */
-/*   Updated: 2022/01/18 12:08:27 by jfritz           ###   ########.fr       */
+/*   Updated: 2022/01/18 12:19:21 by jfritz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ t_params	*create_params(char **argv)
 		return (params);
 	return (NULL);
 }
+
 /*
 	usage:
 	number_of_philosophers time_to_die time_to_eat

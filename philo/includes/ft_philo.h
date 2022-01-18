@@ -16,11 +16,11 @@
 # define FORK 5
 
 typedef struct s_params {
-	int	number_philo;
-	int	time_to_die;
-	int	time_to_eat;
-	int	time_to_sleep;
-	int	number_must_eat;
+	int				number_philo;
+	int				time_to_die;
+	int				time_to_eat;
+	int				time_to_sleep;
+	int				number_must_eat;
 	pthread_mutex_t	*forks;
 	int				alive;
 	long			start_time;
@@ -39,7 +39,7 @@ typedef struct s_philosoph {
 	int					is_dead;
 	long				next_death;
 	unsigned int		last_meal;
-	int		times_eaten;
+	int					times_eaten;
 	t_params			*params;
 }	t_philosph;
 
@@ -65,6 +65,7 @@ void		ft_putstr_fd(char *s, int fd);
 void		putstr_buff(char *s, char **buff);
 void		putnbr_buff(int n, char **buff);
 void		put_nbr(int n);
+void		watcher(t_philosph *philos);
 
 void		print_how_many_eaten(t_philosph *phs);
 

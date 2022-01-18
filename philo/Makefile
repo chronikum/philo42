@@ -2,7 +2,7 @@ CC = gcc
 
 NAME = philo
 
-SRC = philo.c input_check.c cycle.c printer.c
+SRC = philo.c input_check.c cycle.c printer.c watcher.c
 
 UTILS = ./utils/get_time.c ./utils/basic_utils.c
 

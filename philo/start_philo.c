@@ -6,7 +6,7 @@
 /*   By: jfritz <jfritz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/09 14:56:28 by jfritz            #+#    #+#             */
-/*   Updated: 2022/01/18 11:49:30 by jfritz           ###   ########.fr       */
+/*   Updated: 2022/01/18 12:30:09 by jfritz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@
 */
 void	build_forks(t_params *param)
 {
-	int i;
-	
+	int	i;
+
 	i = 0;
 	pthread_mutex_init(&param->wait_printing, NULL);
 	pthread_mutex_init(&param->waiter, NULL);
@@ -38,8 +38,8 @@ void	build_forks(t_params *param)
 */
 void	start_philo(t_params *param, t_philosph	*phs)
 {
-	int i;
-	
+	int	i;
+
 	i = 0;
 	build_forks(param);
 	param->start_time = get_current_time();
@@ -63,11 +63,3 @@ void	start_philo(t_params *param, t_philosph	*phs)
 	}
 	watcher(phs);
 }
-
-// printf("Philo %d has left fork %d and right fork %d\n", i, i, ((i + 1) % param->number_philo));
-// Philo 0 has left fork 0 and right fork 1
-// Philo 1 has left fork 1 and right fork 2
-// Philo 2 has left fork 2 and right fork 3
-// Philo 3 has left fork 3 and right fork 4
-// Philo 4 has left fork 4 and right fork 5
-// Philo 5 has left fork 5 and right fork 0
