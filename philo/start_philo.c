@@ -6,7 +6,7 @@
 /*   By: jfritz <jfritz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/09 14:56:28 by jfritz            #+#    #+#             */
-/*   Updated: 2022/01/18 11:34:11 by jfritz           ###   ########.fr       */
+/*   Updated: 2022/01/18 11:49:30 by jfritz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ void	start_philo(t_params *param, t_philosph	*phs)
 		(&phs[i])->identifier = (i + 1);
 		(&phs[i])->left_fork = &param->forks[i];
 		(&phs[i])->right_fork = &param->forks[(i + 1) % param->number_philo];
+		(&phs[i])->times_eaten = 0;
 		i++;
 	}
 	i = 0;

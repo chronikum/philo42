@@ -27,7 +27,7 @@ typedef struct s_params {
 	pthread_mutex_t	waiter;
 	pthread_mutex_t	wait_printing;
 	pthread_mutex_t	reading_alive;
-	pthread_mutex_t				all_alive;
+	pthread_mutex_t	all_alive;
 }	t_params;
 
 typedef struct s_philosoph {
@@ -39,6 +39,7 @@ typedef struct s_philosoph {
 	int					is_dead;
 	long				next_death;
 	unsigned int		last_meal;
+	int		times_eaten;
 	t_params			*params;
 }	t_philosph;
 
@@ -64,5 +65,7 @@ void		ft_putstr_fd(char *s, int fd);
 void		putstr_buff(char *s, char **buff);
 void		putnbr_buff(int n, char **buff);
 void		put_nbr(int n);
+
+void		print_how_many_eaten(t_philosph *phs);
 
 #endif
