@@ -9,3 +9,9 @@ philo/.vscode/settings.json
 philo/.vscode/settings.json
 philo/.vscode/settings.json
 .vscode/settings.json
+philo2/.vscode/settings.json
+.gitignore
+philo2/philo.dSYM/Contents/Resources/DWARF/philo
+philo2/philo.dSYM/Contents/Info.plist
+philo2/README.MD
+philo2/philo
