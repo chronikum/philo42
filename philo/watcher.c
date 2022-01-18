@@ -6,11 +6,23 @@
 /*   By: jfritz <jfritz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 12:30:04 by jfritz            #+#    #+#             */
-/*   Updated: 2022/01/18 12:33:54 by jfritz           ###   ########.fr       */
+/*   Updated: 2022/01/18 13:00:39 by jfritz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./includes/ft_philo.h"
+
+void	lock_all(t_philosph *philo)
+{
+	int	i;
+
+	i = 0;
+	while (i < philo->params->number_philo)
+	{
+		pthread_mutex_lock(&philo->params->forks[i]);
+		i++;
+	}
+}
 
 void	kill_philo(t_philosph *philos, int *i)
 {

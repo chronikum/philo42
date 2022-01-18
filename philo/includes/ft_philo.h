@@ -68,5 +68,6 @@ void		put_nbr(int n);
 void		watcher(t_philosph *philos);
 
 void		print_how_many_eaten(t_philosph *phs);
+void		lock_all(t_philosph *philo);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: jfritz <jfritz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/11 14:41:09 by jfritz            #+#    #+#             */
-/*   Updated: 2022/01/18 12:30:56 by jfritz           ###   ########.fr       */
+/*   Updated: 2022/01/18 13:07:08 by jfritz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,19 +27,22 @@ void	ft_wait(long time)
 */
 void	eating_philo(t_philosph *ph)
 {
-	pthread_mutex_lock(ph->left_fork);
-	printer(ph, FORK);
-	pthread_mutex_lock(ph->right_fork);
-	printer(ph, FORK);
-	ph->next_death = get_current_time() + get_current_time();
-	printer(ph, EATING);
-	ph->next_death = get_current_time() + (ph->params->time_to_die);
-	ft_wait(ph->params->time_to_eat);
-	ph->times_eaten++;
 	if (ph->params->alive)
 	{
-		pthread_mutex_unlock(ph->left_fork);
-		pthread_mutex_unlock(ph->right_fork);
+		pthread_mutex_lock(ph->left_fork);
+		printer(ph, FORK);
+		pthread_mutex_lock(ph->right_fork);
+		printer(ph, FORK);
+		ph->next_death = get_current_time() + get_current_time();
+		printer(ph, EATING);
+		ph->next_death = get_current_time() + (ph->params->time_to_die);
+		ft_wait(ph->params->time_to_eat);
+		ph->times_eaten++;
+		if (ph->params->alive)
+		{
+			pthread_mutex_unlock(ph->left_fork);
+			pthread_mutex_unlock(ph->right_fork);
+		}	
 	}
 }
 
@@ -48,8 +51,11 @@ void	eating_philo(t_philosph *ph)
 */
 void	sleeping_philo(t_philosph *ph)
 {
-	printer(ph, SLEEPING);
-	ft_wait(ph->params->time_to_sleep);
+	if (ph->params->alive)
+	{
+		printer(ph, SLEEPING);
+		ft_wait(ph->params->time_to_sleep);
+	}
 }
 
 /*
