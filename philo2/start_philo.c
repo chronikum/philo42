@@ -6,7 +6,7 @@
 /*   By: jfritz <jfritz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/09 14:56:28 by jfritz            #+#    #+#             */
-/*   Updated: 2022/01/18 12:30:09 by jfritz           ###   ########.fr       */
+/*   Updated: 2022/01/18 15:04:22 by jfritz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 /*
 	Inits the mutex and creates all the forks
 	which are being used by the philosphers later on
-	
 */
 void	build_forks(t_params *param)
 {

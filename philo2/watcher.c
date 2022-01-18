@@ -6,7 +6,7 @@
 /*   By: jfritz <jfritz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 12:30:04 by jfritz            #+#    #+#             */
-/*   Updated: 2022/01/18 14:54:31 by jfritz           ###   ########.fr       */
+/*   Updated: 2022/01/18 15:20:27 by jfritz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,18 @@ void	lock_all(t_philosph *philo)
 	}
 }
 
-void	kill_philo(t_philosph *philos, int *i)
+void	kill_philo(t_philosph *philos, int *i, int phil_id)
 {
-	(*i) = 400;
+	long time;
+	
+	if (i)
+		(*i) = 400;
+	time = get_current_time() - philos->params->start_time;
 	philos->params->alive = 0;
+	if (phil_id > 0)
+		printf("%ld %d died\n", time, phil_id);
+	lock_all(philos);
+	ft_unlock_all(philos);
 }
 
 /*
@@ -45,21 +53,18 @@ void	watcher(t_philosph *philos)
 	{
 		i = 0;
 		all_done = 0;
+		pthread_mutex_lock(&philos->params->reading_alive);
 		while (i < philos->params->number_philo && philos->params->alive)
 		{
-			pthread_mutex_lock(&philos->params->reading_alive);
 			if (get_current_time() >= philos[i].next_death)
-			{
 				printer(&philos[i], DEAD);
-				kill_philo(philos, &i);
-			}
 			else if (philos[i].times_eaten >= philos->params->number_must_eat)
 				all_done++;
 			i++;
-			pthread_mutex_unlock(&philos->params->reading_alive);
 		}
 		if (all_done == philos->params->number_philo)
-			kill_philo(philos, &i);
+			kill_philo(philos, &i, -1);
+		pthread_mutex_unlock(&philos->params->reading_alive);
 	}
 }
 

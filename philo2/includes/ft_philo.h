@@ -69,5 +69,6 @@ void		watcher(t_philosph *philos);
 
 void		print_how_many_eaten(t_philosph *phs);
 void		lock_all(t_philosph *philo);
+void		kill_philo(t_philosph *philos, int *i, int phil_id);
 
 #endif
