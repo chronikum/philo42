@@ -26,6 +26,7 @@ typedef struct s_params {
 	long			start_time;
 	pthread_mutex_t	waiter;
 	pthread_mutex_t	wait_printing;
+	pthread_mutex_t	reading_alive;
 	pthread_mutex_t				all_alive;
 }	t_params;
 
