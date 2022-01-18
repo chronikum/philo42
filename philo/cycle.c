@@ -6,7 +6,7 @@
 /*   By: jfritz <jfritz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/11 14:41:09 by jfritz            #+#    #+#             */
-/*   Updated: 2022/01/18 11:35:56 by jfritz           ###   ########.fr       */
+/*   Updated: 2022/01/18 11:44:34 by jfritz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,14 @@ void	watcher(t_philosph *philos)
 		i = 0;
 		while (i < philos->params->number_philo)
 		{
+			pthread_mutex_lock(&philos->params->reading_alive);
 			if (get_current_time() >= philos[i].next_death)
 			{
-				pthread_mutex_lock(&philos->params->reading_alive);
 				printer(&philos[i], DEAD);
 				philos->params->alive = 0;
 				i = 400;
-				pthread_mutex_unlock(&philos->params->reading_alive);
 			}
+			pthread_mutex_unlock(&philos->params->reading_alive);
 		}
 	}
 }
