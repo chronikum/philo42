@@ -6,7 +6,7 @@
 /*   By: jfritz <jfritz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/08 12:30:33 by jfritz            #+#    #+#             */
-/*   Updated: 2022/01/18 15:40:47 by jfritz           ###   ########.fr       */
+/*   Updated: 2022/01/25 15:27:28 by jfritz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ void	join_together(t_philosph *philosophs)
 	pthread_mutex_destroy(&params->wait_printing);
 	pthread_mutex_destroy(&params->waiter);
 	pthread_mutex_destroy(&params->reading_alive);
-	printf("FUCKING FINISHED\n");
 }
 
 /*
