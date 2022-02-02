@@ -6,7 +6,7 @@
 /*   By: jfritz <jfritz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/08 12:30:33 by jfritz            #+#    #+#             */
-/*   Updated: 2022/01/25 15:27:28 by jfritz           ###   ########.fr       */
+/*   Updated: 2022/02/02 20:48:31 by jfritz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int	fill_params(char **argv, t_params *param)
 	if (argv[5])
 		param->number_must_eat = ft_atoi(argv[5]);
 	else
-		param->number_must_eat = INT32_MAX;
+		param->number_must_eat = 2147483647;
 	return (1);
 }
 
