@@ -6,7 +6,7 @@
 /*   By: jfritz <jfritz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 12:30:04 by jfritz            #+#    #+#             */
-/*   Updated: 2022/01/25 15:28:08 by jfritz           ###   ########.fr       */
+/*   Updated: 2022/02/02 20:59:32 by jfritz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	lock_all(t_philosph *philo)
 
 void	kill_philo(t_philosph *philos, int *i, int phil_id)
 {
-	long time;
+	long	time;
 
 	if (i)
 		(*i) = 400;
@@ -36,7 +36,6 @@ void	kill_philo(t_philosph *philos, int *i, int phil_id)
 		printf("%ld %d died\n", time, phil_id);
 	ft_unlock_all((t_philosph *) philos->params->all_phs);
 	join_together((t_philosph *) philos->params->all_phs);
-	// lock_all((t_philosph *) philos->params->all_phs);
 }
 
 /*
@@ -82,7 +81,6 @@ void	ft_unlock_all(t_philosph *phs)
 	}
 	pthread_mutex_unlock(&phs->params->wait_printing);
 	pthread_mutex_unlock(&phs->params->reading_alive);
-	// print_how_many_eaten(phs);
 }
 
 void	print_how_many_eaten(t_philosph *phs)

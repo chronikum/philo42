@@ -6,7 +6,7 @@
 /*   By: jfritz <jfritz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/11 14:46:42 by jfritz            #+#    #+#             */
-/*   Updated: 2022/02/02 20:52:16 by jfritz           ###   ########.fr       */
+/*   Updated: 2022/02/02 21:01:08 by jfritz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	print_action(int phil_id, int activity, t_philosph *philo)
 {
 	long		time;
-	static	int is_dead = 0;
+	static int	is_dead = 0;
 
 	time = get_current_time() - philo->params->start_time;
 	if (is_dead != 1)
@@ -32,7 +32,7 @@ void	print_action(int phil_id, int activity, t_philosph *philo)
 		else if (activity == SLEEPING)
 			printf("%ld %d is sleeping\n", time, phil_id);
 		else if (activity == THINKING)
-			printf("%ld %d is thinking\n", time, phil_id);	
+			printf("%ld %d is thinking\n", time, phil_id);
 	}
 }
 
