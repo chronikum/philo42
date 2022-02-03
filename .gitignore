@@ -1,5 +1,5 @@
 *.o
-.DS_Store
+*.DS_Store
 philo/philo
 .gitignore
 philo/philo.dSYM/Contents/Info.plist
