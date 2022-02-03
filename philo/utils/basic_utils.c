@@ -6,7 +6,7 @@
 /*   By: jfritz <jfritz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/11 14:49:16 by jfritz            #+#    #+#             */
-/*   Updated: 2022/01/18 22:47:49 by jfritz           ###   ########.fr       */
+/*   Updated: 2022/01/18 12:34:06 by jfritz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,5 +73,5 @@ void	putnbr_buff(int n, char **buff)
 	base = 10;
 	if (n >= base)
 		putnbr_buff(n / base, buff);
-	*(*buff)++ = (seq[n % base]); 
+	*(*buff)++ = (seq[n % base]);
 }

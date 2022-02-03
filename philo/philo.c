@@ -6,7 +6,7 @@
 /*   By: jfritz <jfritz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/08 12:30:33 by jfritz            #+#    #+#             */
-/*   Updated: 2022/01/18 12:19:21 by jfritz           ###   ########.fr       */
+/*   Updated: 2022/02/02 20:48:31 by jfritz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ void	join_together(t_philosph *philosophs)
 	}
 	pthread_mutex_destroy(&params->wait_printing);
 	pthread_mutex_destroy(&params->waiter);
+	pthread_mutex_destroy(&params->reading_alive);
 }
 
 /*
@@ -56,7 +57,7 @@ int	fill_params(char **argv, t_params *param)
 	if (argv[5])
 		param->number_must_eat = ft_atoi(argv[5]);
 	else
-		param->number_must_eat = INT32_MAX;
+		param->number_must_eat = 2147483647;
 	return (1);
 }
 
@@ -94,10 +95,10 @@ int	main(int argc, char **argv)
 		return (1);
 	params = create_params(argv);
 	phs = malloc(sizeof(t_philosph) * params->number_philo + 1);
+	params->all_phs = phs;
 	if (!params)
 		return (1);
 	start_philo(params, phs);
-	join_together(phs);
 	free(params);
 	free(phs);
 	return (0);
