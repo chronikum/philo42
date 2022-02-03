@@ -6,7 +6,7 @@
 /*   By: jfritz <jfritz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/08 13:22:17 by jfritz            #+#    #+#             */
-/*   Updated: 2022/02/01 14:51:08 by jfritz           ###   ########.fr       */
+/*   Updated: 2022/02/03 11:42:47 by jfritz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ static int	validate_number(char *n)
 
 	number_int = ft_atoi(n);
 	number_long = ft_ll_atoi(n);
+	if (number_int == 0)
+		return (0);
 	if (number_int == number_long)
 		return (1);
 	return (0);
