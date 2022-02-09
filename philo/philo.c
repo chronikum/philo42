@@ -6,7 +6,7 @@
 /*   By: jfritz <jfritz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/08 12:30:33 by jfritz            #+#    #+#             */
-/*   Updated: 2022/02/09 10:44:38 by jfritz           ###   ########.fr       */
+/*   Updated: 2022/02/09 10:46:56 by jfritz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,10 +93,10 @@ int	main(int argc, char **argv)
 	if (!check_input(argv))
 		return (1);
 	params = create_params(argv);
-	phs = malloc(sizeof(t_philosph) * params->number_philo + 1);
-	params->all_phs = phs;
 	if (!params)
 		return (1);
+	phs = malloc(sizeof(t_philosph) * params->number_philo + 1);
+	params->all_phs = phs;
 	start_philo(params, phs);
 	free(params);
 	free(phs);
