@@ -1,7 +1,0 @@
-{
-	"files.associations": {
-		"ft_philo.h": "c",
-		"algorithm": "c",
-		"ostream": "cpp"
-	}
-}
