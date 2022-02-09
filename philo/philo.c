@@ -6,7 +6,7 @@
 /*   By: jfritz <jfritz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/08 12:30:33 by jfritz            #+#    #+#             */
-/*   Updated: 2022/02/02 20:48:31 by jfritz           ###   ########.fr       */
+/*   Updated: 2022/02/09 10:44:38 by jfritz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	join_together(t_philosph *philosophs)
 		i++;
 	}
 	i = 0;
-	while (i <= philo_number)
+	while (i < philo_number)
 	{
 		pthread_mutex_destroy(&params->forks[i]);
 		i++;
@@ -51,7 +51,6 @@ int	fill_params(char **argv, t_params *param)
 	param->time_to_eat = ft_atoi(argv[3]);
 	param->time_to_sleep = ft_atoi(argv[4]);
 	param->forks = malloc(sizeof(pthread_mutex_t) * ft_atoi(argv[1]));
-	pthread_mutex_init(&param->wait_printing, NULL);
 	if (!param->forks)
 		return (0);
 	if (argv[5])
